@@ -22,6 +22,8 @@ fn main() {
     let gif_path = "/media/pipi/0123-4567/Images/gif/";
     let bmp_path = "/media/pipi/0123-4567/Images/bmp/";
     let tif_path = "/media/pipi/0123-4567/Images/tif/";
+    let mov_path = "/media/pipi/0123-4567/AV/";
+    let mlist = ["avi", "AVI", "mpg", "MPG", "mp4", "MP4"];
 
     for e in WalkDir::new(img_path)
         .follow_links(true)
@@ -62,6 +64,8 @@ fn main() {
                     tif_path.to_owned() + parts[parts.len() - 2] + ".tif",
                 )
                 .unwrap();
+            } else if mlist.contains(&ext) {
+                std::fs::rename(fname.clone(), mov_path.to_owned() + parts[parts.len() - 2] + "." + ext).unwrap();
             }
         }
     }
