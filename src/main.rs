@@ -20,22 +20,22 @@ fn main() {
             let fname = e.path().to_string_lossy().to_string();
             let parts = &fname.split(".").collect::<Vec<&str>>();
             let ext = parts.last().unwrap();
-            if ext == &"jpg" {
+            if ext == &"jpg" || ext == &"jpeg" || ext == &"JPEG" {
                 std::fs::rename(fname.clone(), jpg_path.to_owned() + parts[parts.len() - 2] + ".jpg")
                     .unwrap();
             } else if ext == &"JPG" {
                 std::fs::rename(fname.clone(), jpg2_path.to_owned() + parts[parts.len() - 2] + ".jpg")
                     .unwrap();
-            } else if ext == &"png" {
+            } else if ext == &"png" || ext == &"PNG" {
                 std::fs::rename(fname.clone(), png_path.to_owned() + parts[parts.len() - 2] + ".png")
                     .unwrap();
-            } else if ext == &"gif" {
+            } else if ext == &"gif" || ext == &"GIF" {
                 std::fs::rename(fname.clone(), gif_path.to_owned() + parts[parts.len() - 2] + ".gif")
                     .unwrap();
-            } else if ext == &"bmp" {
+            } else if ext == &"bmp" || ext == &"BMP" {
                 std::fs::rename(fname.clone(), bmp_path.to_owned() + parts[parts.len() - 2] + ".bmp")
                     .unwrap();
-            } else if ext == &"tif" {
+            } else if ext == &"tif" || ext == &"TIF" || ext == &"tiff" || ext == &"TIFF" {
                 std::fs::rename(fname.clone(), tif_path.to_owned() + parts[parts.len() - 2] + ".tif")
                     .unwrap();
             }
