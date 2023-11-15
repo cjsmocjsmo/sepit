@@ -1,7 +1,7 @@
 // use std::fs;
+use std::fs::rename;
 use std::path::Path;
 use walkdir::WalkDir;
-use std::fs::rename;
 
 fn main() {
     let img_path = "/media/pipi/0123-4567/Images/";
@@ -15,7 +15,6 @@ fn main() {
             let _new_filename = sanitize_filename(fname);
         }
     };
-
 
     let jpg_path = "/media/pipi/0123-4567/Images/jpg/";
     let png_path = "/media/pipi/0123-4567/Images/png/";
@@ -65,7 +64,11 @@ fn main() {
                 )
                 .unwrap();
             } else if mlist.contains(&ext) {
-                std::fs::rename(fname.clone(), mov_path.to_owned() + parts[parts.len() - 2] + "." + ext).unwrap();
+                std::fs::rename(
+                    fname.clone(),
+                    mov_path.to_owned() + parts[parts.len() - 2] + "." + ext,
+                )
+                .unwrap();
             }
         }
     }
