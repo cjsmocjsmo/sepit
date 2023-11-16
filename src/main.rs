@@ -23,7 +23,7 @@ fn main() {
     let tif_path = "/media/pipi/0123-4567/Images/tif/";
     let mov_path = "/media/pipi/0123-4567/AV/";
     let paths_list = vec![jpg_path, png_path, gif_path, bmp_path, tif_path, mov_path];
-    let _zlist = paths_list.iter().map(|x| std::fs::create_dir_all(x)).collect::<Vec<_>>().unwrap();
+    let _zlist = paths_list.iter().map(|x| std::fs::create_dir_all(x)).collect::<Vec<_>>();
 
     let mlist = ["avi", "AVI", "mpg", "MPG", "mp4", "MP4"];
 
