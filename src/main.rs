@@ -39,29 +39,37 @@ fn main() {
             let ext = parts.last().unwrap();
             if ext == &"jpg" || ext == &"JPG" || ext == &"jpeg" || ext == &"JPEG" {
                 let new_jpg_addr = format!("{:?}", digest) + ".jpg";
-                std::fs::rename(fname.clone(), jpg_path.to_owned() + &new_jpg_addr + ".jpg")
-                    .unwrap();
+                let jpg_rename_resp = std::fs::rename(fname.clone(), jpg_path.to_owned() + &new_jpg_addr + ".jpg");
+                match jpg_rename_resp {
+                    Ok(_) => println!("{} moved to {}", fname, new_jpg_addr),
+                    Err(e) => {std::fs::remove_file(fname.clone()).unwrap(); println!("Error {} not moved so removing {}", e, fname)}
+                }
             } else if ext == &"png" || ext == &"PNG" {
                 let new_png_addr = format!("{:?}", digest) + ".png";
-                std::fs::rename(fname.clone(), png_path.to_owned() + &new_png_addr + ".png")
-                    .unwrap();
-            } else if ext == &"gif" || ext == &"GIF" {
-                let new_gif_addr = format!("{:?}", digest) + ".gif";
-                std::fs::rename(fname.clone(), gif_path.to_owned() + &new_gif_addr + ".gif")
-                    .unwrap();
+                let png_rename_resp = std::fs::rename(fname.clone(), png_path.to_owned() + &new_png_addr + ".png");
+                match png_rename_resp {
+                    Ok(_) => println!("{} moved to {}", fname, new_png_addr),
+                    Err(e) => {std::fs::remove_file(fname.clone()).unwrap(); println!("Error {} not moved so removing {}", e, fname)},
+                }
             } else if ext == &"bmp" || ext == &"BMP" {
                 let new_bmp_addr = format!("{:?}", digest) + ".bmp";
-                std::fs::rename(fname.clone(), bmp_path.to_owned() + &new_bmp_addr + ".bmp")
-                    .unwrap();
+                let bmp_rename_resp = std::fs::rename(fname.clone(), bmp_path.to_owned() + &new_bmp_addr + ".bmp");
+                match bmp_rename_resp {
+                    Ok(_) => println!("{} moved to {}", fname, new_bmp_addr),
+                    Err(e) => {std::fs::remove_file(fname.clone()).unwrap(); println!("Error {} not moved so removing {}", e, fname)},
+                }
             } else if ext == &"tif" || ext == &"TIF" || ext == &"tiff" || ext == &"TIFF" {
                 let new_tif_addr = format!("{:?}", digest) + ".tif";
-                std::fs::rename(fname.clone(), tif_path.to_owned() + &new_tif_addr + ".tif")
-                    .unwrap();
+                let tif_rename_results = std::fs::rename(fname.clone(), tif_path.to_owned() + &new_tif_addr + ".tif");
+                match tif_rename_results {
+                    Ok(_) => println!("{} moved to {}", fname, new_tif_addr),
+                    Err(e) => {std::fs::remove_file(fname.clone()).unwrap(); println!("Error {} not moved so removing {}", e, fname)},
+                }
             } else if mlist.contains(&ext) {
                 let new_mov_addr = format!("{:?}", digest);
                 std::fs::rename(
                     fname.clone(),
-                    mov_path.to_owned() + &new_mov_addr + "." + ext,
+                    mov_path.to_owned() + &new_mov_addr + "." + ext.to_lowercase().as_str(),
                 )
                 .unwrap();
             }
