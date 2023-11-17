@@ -7,10 +7,9 @@ fn main() {
     let img_path = "/media/pipi/0123-4567/Images/";
 
     let paths_list = vec![
-        "/media/pipi/0123-4567/Images/jpg/",
-        "/media/pipi/0123-4567/Images/png/",
-        "/media/pipi/0123-4567/Images/bmp/",
-        "/media/pipi/0123-4567/Images/tif/",
+        "/media/pipi/0123-4567/jpg/",
+        "/media/pipi/0123-4567/png/",
+        "/media/pipi/0123-4567/bmp/",
         "/media/pipi/0123-4567/AV/",
     ];
     let _zlist = paths_list
@@ -59,17 +58,6 @@ fn main() {
                     std::fs::rename(fname.clone(), paths_list[2].to_owned() + &new_bmp_addr + ".bmp");
                 match bmp_rename_resp {
                     Ok(_) => println!("{} moved to {}", fname, new_bmp_addr),
-                    Err(e) => {
-                        std::fs::remove_file(fname.clone()).unwrap();
-                        println!("Error {} not moved so removing {}", e, fname)
-                    }
-                }
-            } else if ext == &"tif" || ext == &"TIF" || ext == &"tiff" || ext == &"TIFF" {
-                let new_tif_addr = format!("{:?}", digest) + ".tif";
-                let tif_rename_results =
-                    std::fs::rename(fname.clone(), paths_list[3].to_owned() + &new_tif_addr + ".tif");
-                match tif_rename_results {
-                    Ok(_) => println!("{} moved to {}", fname, new_tif_addr),
                     Err(e) => {
                         std::fs::remove_file(fname.clone()).unwrap();
                         println!("Error {} not moved so removing {}", e, fname)
