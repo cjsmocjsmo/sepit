@@ -34,6 +34,7 @@ fn main() {
     {
         if e.metadata().unwrap().is_file() {
             let fname = e.path().to_string_lossy().to_string();
+            println!("fname: {}", fname);
             let digest = compute(fname.clone());
             let parts = &fname.split(".").collect::<Vec<&str>>();
             let ext = parts.last().unwrap();
