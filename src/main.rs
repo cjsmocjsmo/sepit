@@ -67,7 +67,7 @@ fn main() {
                 let new_mov_addr = format!("{:?}", digest);
                 std::fs::rename(
                     fname.clone(),
-                    paths_list[4].to_owned() + &new_mov_addr + "." + ext.to_lowercase().as_str(),
+                    paths_list[3].to_owned() + &new_mov_addr + "." + ext.to_lowercase().as_str(),
                 )
                 .unwrap();
             }
